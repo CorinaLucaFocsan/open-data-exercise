@@ -8,10 +8,7 @@ import processing.core.PGraphics;
 import de.fhpotsdam.unfolding.marker.AbstractMarker;
 import de.fhpotsdam.unfolding.geo.Location;
 
-/**
- * This marker displays a circular bubble at its location on the map.
- * DO NOT TOUCH THIS FILE!
- */
+
 public class MarkerBubble extends AbstractMarker {
     App app;
     float width;
