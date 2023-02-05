@@ -35,55 +35,20 @@ According to [the description of the metadata](http://www.nyc.gov/html/dot/downl
 
 ## Internal representation of data:
 
-- When your program pulls the data from the text file, convert it into a two-dimensional array in code.
-- The length of the array cannot be hard-coded, but must be programmatically sized to fit the data.
-
-To extract the data from the text file and place it into the correct data format, your code must complete and make use of the following methods. Instructions for each are included as comments in the code.
-
-- `getLinesFromFile` - this method accepts a file path as an argument and must return a String array holding all lines in that file with their line breaks removed.
-- `getDataFromLines` - this method accepts a String array of lines from a file and returns a two-dimensional String array that has split up each line into its own sub-array of values.
+- Converts data into a two-dimensional array in code.
 
 ## Analysis and visualization
 
-You will write code to perform `6` different analyses of the data and map the results. Details are left as comments :
+There are `4` different analyses of the data and map the results. Details are left as comments :
 
-1. the pedestrian counts at all locations in the morning in May 2021. Complete the `showMay2021MorningCounts` method for this.
-1. the pedestrian counts at all locations in the evening in May 2021. Complete the `showMay2021EveningCounts` method for this.
-1. the difference between the pedestrian counts in the evening compared to the morning in May 2021. Complete the `showMay2021EveningMorningCountsDifference` method for this.
-1. the difference between the average of the morning/evening pedestrian counts in May 2021 compared to the average of the morning/evening pedestrian counts in May 2019. Complete the `showMay2021VersusMay2019Counts` method for this.
-1. another more analyses of your choosing. Complete the `customVisualization1` method for this.
-1. another more analyses of your choosing. Complete the `customVisualization1` method for this.
+1. `showMay2021MorningCounts`: the pedestrian counts at all locations in the morning in May 2021. 
+1. `showMay2021EveningCounts`: the pedestrian counts at all locations in the evening in May 2021.
+1. `showMay2021EveningMorningCountsDifference`: the difference between the pedestrian counts in the evening compared to the morning in May 2021. 
+1. `showMay2021VersusMay2019Counts`: the difference between the average of the morning/evening pedestrian counts in May 2021 compared to the average of the morning/evening pedestrian counts in May 2019.
+
+As well as 2 custom-made analyses. 
 
 In all cases, if data required by the analysis is missing for any given location in the original data set, a marker should not be placed at that location on the map.
-
-An example of how to specify a location that the map can understand:
-
-```java
-// create a Location in the center of Berlin, Germany
-float lat = 52.5f;
-float lng = 13.4f;
-Location location = new Location(lat, lng);
-```
-
-Example of how to place a bubble marker at a specific location:
-
-```java
-// place a bubble marker on the map, with a given radius and color
-float radius = 300;
-float[] fillColor = {0, 0, 255, 127}; // a color, specified as a combinatino of red, green, blue, and alpha (i.e. transparency), each represented as numbers between 0 and 255.
-MarkerBubble marker = new MarkerBubble(this, location, radius, fillColor); // don't worry about the `this` keyword for now... just make sure it's there.
-map.addMarker(marker); // add marker to the map, assuming the map variable has been declared earlier.
-```
-
-Example of how to place an image marker at a specific location:
-
-```java
-// place an image marker on the map, with a given image file
-float radius = 300;
-String filepath = "images/marker_blue.png";
-MarkerBubble marker = new MarkerImage(this, location, filepath); // don't worry about the `this` keyword for now... just make sure it's there.
-map.addMarker(marker); // add marker to the map, assuming the map variable has been declared earlier.
-```
 
 ## Interactivity
 
@@ -97,73 +62,3 @@ While viewing the map, the user must be able to select which of the visualizatio
 
 This project depends upon the [Unfolding](http://unfoldingmaps.org/) library, which itself depends upon the core library of the [Processing](https://processing.org/) project. These dependencies are included within the `lib` directory.
 
-However, Processing currently works only with Java 8. In order to have the Java Extensions for Visual Studio Code run the program with Java 8, instead of any newer version, you must do the following:
-
-1. Download and install the j[dk8u242-b08 version of OpenJDK 8](https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/tag/jdk8u242-b08) - on MacOS, select the appropriate `.pkg` file; for Windows, select the appropriate `.msi` file (be sure to select the file with `jdk` in its name, not the one with `jre` in its name).
-1. Note the file path to the `Contents/Home` sub-directory where this new JDK was installed. On Mac, it is probably in `"/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"`. On Windows, it will be in a similar directory. We'll refer to this directory later as `THE_PATH_TO_JDK_8`.
-1. In Visual Studio Code, go to Settings (MacOS: `Code`->`Preferences`->`Settings`; Windows: `File`->`Preferences`->`Settings`), and enter "`java jdt ls java home` in the search field. You should see an option with a link to `Edit in settings.json` - click that link to open that file in the editor.
-1. In the `settings.json`, edit the "`java.configuration.runtimes`" setting so that it includes the new JDK. If an existing JDK is listed there, you an keep both. For example (replace `THE_PATH_TO_JDK_8` with the correct path for your newly-installed JDK) :
-   ```javascript
-   "java.configuration.runtimes": [
-       {
-       "name": "JavaSE-1.8",
-       "path": "THE_PATH_TO_JDK_8",
-       "default": true
-       },
-       {
-       "name": "JavaSE-15",
-       "path": "THE_PATH_TO_AN_EXISTING_JDK",
-       "default": false
-       }
-   ],
-   ```
-1. With this project open, go to Visual Studio Code's Command Palette (`View`->`Command Palette`) and search for "`Java: Configure Java Runtime`". Click on the matching option that appears.
-1. In the `Configure Java Runtime` setting document, click the icon to edit the current runtime setting for this project and change it to the newly-installed JDK.
-1. In the Command Palette again (`View`->`Command Palette`), search for "`Java: Clean Language Server Workspace`". Click the matching option that appears and confirm that you would like to reset the Java language server.
-
-At this point, the project should run properly. Try it out.
-
-## Solutions
-
-The following screenshots show the first 4 visualizations, completed - yours need not be identical, but should be very similar:
-
-1. May 2021 Morning Pedestrian Counts:
-   ![May 2021 Morning Pedestrian Counts](./images/screenshot_may2021morning.png)
-2. May 2021 Evening Pedestrian Counts:
-   ![May 2021 Evening Pedestrian Counts](./images/screenshot_may2021evening.png)
-3. Difference between May 2021 Evening and Morning Pedestrian Counts
-   ![Difference between May 2021 Evening and Morning Pedestrian Counts](./images/screenshot_may2021eveningvsmorning.png)
-4. Difference Between May 2021 and May 2019 Pedestrian Counts:
-   ![Difference Between May 2021 and May 2019 Pedestrian Counts](./images/screenshot_may2021vsmay2019.png)
-
-## Folder structure
-
-This project has several important directories:
-
-- `data` - data files reside in this directory
-- `src` - contains the Java source code for the project (i.e. `.java` files)
-- `bin` - contains the compiled code (i.e. `.class` files)
-- `lib` - contains any dependencies (other libraries of code that the project depends upon to work)
-
-If your project has no dependencies and has not been compiled, you may not see the `lib` or `bin` directories.
-
-## How to submit this assignment
-
-Once you have completed the changes to th assignment, you are ready to submit it. Do this from within Visual Studio Code.
-
-1. Click on the `Source Control` icon in the left activity bar in Visual Studio Code.
-1. In the Source Control side bar, you will see a field named `Message` - type in a unique message about what you have done, e.g. "_Finished assignment!_" or whatever you want to write as a short note to yourself.
-1. Hover over the words `Source Control`. You will see a `...` icon appear - click it to see a menu. In that menu, click `Commit`->`Commit`. This logs the changes you've made to the Git project - remember Git is used to keep track of changes.
-1. Go to the same menu and click `Push` to submit your assignment - this uploads your updated files to the copy of your respository on GitHub.
-
-![Push changes to GitHub](./images/how_to_push_changes_to_github_from_vscode.png)
-
-That's it... you're done.
-
-## Double-check your submission
-
-Prove to yourself that you have correctly submitted by viewing your repository on the GitHub website - you should see your completed README.md file there.
-
-## Resubmit as many times as you want
-
-You can re-submit as many times as you want before the deadline. Just make changes to the files on your own computer and repeat the process outlined above to upload them to GitHub.
