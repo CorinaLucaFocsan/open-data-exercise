@@ -24,19 +24,12 @@ import de.fhpotsdam.unfolding.providers.Microsoft;
  * A program that pops open an interactive map.
  */
 public class App extends PApplet {
-
-	/****************************************************************/
-	/*                  BEGIN - DON'T MODIFY THIS CODE              */
-	/****************************************************************/
 	UnfoldingMap map; // will be a reference to the actual map
 	String mapTitle; // will hold the title of the map
 	final float SCALE_FACTOR = 0.0002f; // a factor used to scale pedestrian counts to calculate a reasonable radius for a bubble marker on the map
 	final int DEFAULT_ZOOM_LEVEL = 11;
 	final Location DEFAULT_LOCATION = new Location(40.7286683f, -73.997895f); // a hard-coded NYC location to start with
 	String[][] data; // will hold data extracted from the CSV data file
-	/****************************************************************/
-	/*                    END - DON'T MODIFY THIS CODE              */
-	/****************************************************************/
 
 	/**
 	 * This method is automatically called every time the user presses a key while viewing the map.
@@ -46,8 +39,8 @@ public class App extends PApplet {
 	 * 	- when the user presses the `2` key, the code calls the showMay2021EveningCounts method to show the evening counts in May 2021, with blue bubble markers on the map.
 	 * 	- when the user presses the `3` key, the code calls the showMay2021EveningMorningCountsDifferencemethod to show the difference between the evening and morning counts in May 2021.  If the evening count is greater, the marker should be a green bubble, otherwise, the marker should be a red bubble.
 	 * 	- when the user presses the `4` key, the code calls the showMay2021VersusMay2019Counts method to show the difference between the average of the evening and morning counts in May 2021 and the average of the evening and morning counts in May 2019.  If the counts for 2021 are greater, the marker should be a green bubble, otherwise, the marker should be a red bubble.
-	 * 	- when the user presses the `5` key, the code calls the customVisualization1 method to show data of your choosing, visualized with marker types of your choosing.
-	 * 	- when the user presses the `6` key, the code calls the customVisualization2 method to show data of your choosing, visualized with marker types of your choosing.
+	 * 	- when the user presses the `5` key, the code calls the customVisualization1.
+	 * 	- when the user presses the `6` key, the code calls the customVisualization2. 
 	 */
 	public void keyPressed() {
 		System.out.println("Key pressed: " + key);
@@ -112,18 +105,6 @@ public class App extends PApplet {
 			}
 		}
 
-		// remove the code below and replace with your own code that solves the problem indicated in the comments
-		// example of how to create a marker at a specific location and place it on the map
-
-		/**float lat = 40.737375365084105f; // latitude of a location of interest
-		float lng = -74.00101207586745f; // longitude of a location of interest
-		Location markerLocation = new Location(lat, lng); // create a Location object
-		int pedestrianCount = 11024; // an example pedestrian count (in reality, you will get these from a file)
-		float markerRadius = pedestrianCount * SCALE_FACTOR; // scale down the marker radius to look better on the map
-		float[] markerColor = {255, 0, 0, 127}; // a color, specified as a combinatino of red, green, blue, and alpha (i.e. transparency), each represented as numbers between 0 and 255.
-		MarkerBubble marker = new MarkerBubble(this, markerLocation, markerRadius, markerColor); // don't worry about the `this` keyword for now... just make sure it's there.
-		map.addMarker(marker);
-		*/
 
 	}
 
@@ -320,9 +301,7 @@ public class App extends PApplet {
 
 	/**
 	 * Takes an array of lines of text in comma-separated values (CSV) format and splits each line into a sub-array of data fields.
-	 * For example, an argument such as {"1,2,3", "100,200,300"} could result in a returned array { {"1", "2", "3"}, {"100", "200", "300"} }
 	 * This method must skip any lines that don't contain mappable data (i.e. don't have any geospatial data in them) 
-	 * and do any other cleanup of the data necessary for it to be easily mapped by other code in the program.
 	 *
 	 * @param lines A String array of lines of text, where each line is in comma-separated values (CSV) format.
 	 * @return A two-dimensional String array, where each inner array contains the data from one of the lines, split by commas.
