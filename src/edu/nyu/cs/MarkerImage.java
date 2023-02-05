@@ -9,10 +9,6 @@ import processing.core.PImage;
 import de.fhpotsdam.unfolding.marker.AbstractMarker;
 import de.fhpotsdam.unfolding.geo.Location;
 
-/**
- * This marker displays an image at its location on the map.
- * DO NOT TOUCH THIS FILE!
- */
 public class MarkerImage extends AbstractMarker {
 
 	PApplet app;
